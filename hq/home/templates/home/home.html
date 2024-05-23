@@ -1,0 +1,59 @@
+{% load static %}
+<html lang="en" class="html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HQ</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" class="css">
+</head>
+<body>
+
+    {% include 'home/sidebar.html' %}
+    
+    <div class="container">
+      <div class="box" id="performance">Performance</div>
+      <div class="box" id="shipments">Total Shipments</div>
+      <div class="box" id="sales">Daily Sales</div>
+      <div class="box" id="tasks">
+        <div class="beleske">
+            {% for beleska in beleske %}
+            <div class="beleska">
+                <p>{{ beleska.naslov }}</p>
+                <a href="{% url 'pregledaj_belesku' beleska_id=beleska.id %}">
+                    <button>Otvori</button>
+                </a>
+                
+            </div>
+            {% endfor %}
+        </div>
+        
+        <button onclick="otvoriModal()">Dodaj biljesku</button>
+
+      </div>
+      <div class="box" id="table">Simple Table</div>
+    </div>
+
+    <div id="modal">
+        <div class="modal-content">
+            <form action="{% url 'dodaj_belesku' %}" method="POST">
+                {% csrf_token %}
+                <label class="popusili_kurcinu" for="naslov">Naslov</label>
+                <input name="naslov" placeholder="Unesi naslov.." required type="text">
+                <label class="popusili_kurcinu" for="text">Unesi belesku</label>
+                <textarea placeholder="Unesi novu belesku.." name="text" rows="4" cols="50" required></textarea>
+                <button>Sacuvaj</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+        function otvoriModal(){
+            var modal = document.getElementById("modal");
+            modal.style.display = 'block';
+        }
+
+    </script>
+    
+</body>
+</html>

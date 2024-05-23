@@ -1,0 +1,31 @@
+{% load static %}
+<html lang="en" class="html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HQ | Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" class="css">
+</head>
+<body>
+
+
+    
+    <div class="container">
+
+        <div class="login">
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <input placeholder="Korisnicko ime" name="username" type="text">
+                <input placeholder="Lozinka" name="password" type="password">
+        
+                <button>Potvrdi</button>
+            </form>
+        </div>
+
+       
+    
+    </div>
+
+    
+</body>
+</html>
