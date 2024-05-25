@@ -5,13 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HQ</title>
     <link rel="stylesheet" href="{% static 'css/home.css' %}" class="css">
+    <link rel="stylesheet" href="{% static 'css/masine.css' %}" class="css">
 </head>
 <body>
 
     {% include 'home/sidebar.html' %}
     
     <div class="container">
-        
+
+        <div class="masine">
+            {% for masina in masine %}
+            <div class="masina">
+                {{masina.ip_adresa}}
+                {{masina.ime}}
+            </div>
+                {% endfor %}
+        </div>
+
     
     </div>
 

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HQ</title>
     <link rel="stylesheet" href="{% static 'css/home.css' %}" class="css">
+    <link rel="stylesheet" href="{% static 'css/clanovi.css' %}" class="css">
 </head>
 <body>
     
@@ -12,13 +13,21 @@
     {% include 'home/sidebar.html' %}
     
     <div class="container">
-    
-        {% for clan in clanovi %}
 
-        <p>{{ clan.user.username }}</p>
-        <img src="{{ clan.slika.url }}" alt="">
-
+        <div class="clanovi">
+            {% for clan in clanovi %}
+            <div class="clan">
+                <p>{{ clan.user.username }}</p>
+                <img src="{{ clan.slika.url }}" alt="">
+            </div>
+            
         {% endfor %}
+        </div>
+    
+    
+
+       
+
         
     </div>
 

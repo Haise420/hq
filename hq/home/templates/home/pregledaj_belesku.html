@@ -11,8 +11,8 @@
     {% include 'home/sidebar.html' %}
     
     <div class="container">
-        <div class="box">
-            <p>{{ beleska.text }}</p>
+        <div class="box" style="height: auto;text-align: unset;">
+            <pre>{{ beleska.text }}</pre>
             <p>{{ beleska.kreiran }}</p>
             <a href="{% url 'obrisi_belesku' beleska_id=beleska.id %}">
                 <button>Obrisi biljesku</button>

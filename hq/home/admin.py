@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(Clan)
 admin.site.register(Beleska)
 admin.site.register(Projekat)
+admin.site.register(Masina)

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HQ</title>
     <link rel="stylesheet" href="{% static 'css/home.css' %}" class="css">
+    <link rel="stylesheet" href="{% static 'css/projekti.css' %}" class="css">
 </head>
 <body>
    
@@ -12,27 +13,55 @@
     {% include 'home/sidebar.html' %}
     
     <div class="container">
+
+        <a class="dodaj-projekat" onclick="otvoriModal()"> 
+            <img style="width: 50px;height: 50px;" src="{% static 'images/add.png' %}" alt="">
+        </a>
+
+        <div class="projekti">
     
-        {% for projekat in projekti %}
+            {% for projekat in projekti %}
 
-        <div class="projekat">
-            <a href="{% url 'projekat' projekat_id=projekat.id %}">{{projekat.ime}}</a> 
+                <div class="projekat">
+                    <a href="{% url 'projekat' projekat_id=projekat.id %}">{{projekat.ime}}</a> 
 
-            <img src="{{projekat.slika.url}}" alt="">
-            <p>{{projekat.aktivnost}}</p>
+                    <img src="{{projekat.slika.url}}" alt="">
+                    <div class="projekat-aktivnost">
+                        Poslednji azurirao:  <p>{{projekat.aktivnost}}</p>
+                    </div>
+                   
+                </div>
+
+            {% endfor %}
         </div>
 
-        {% endfor %}
+
+
+
+
+
+        
+        
+
     </div>
 
     <div id="modal">
         <div class="modal-content">
-            <form action="{% url 'dodaj_belesku' %}" method="POST">
+            <form action="" method="POST">
                 {% csrf_token %}
                 <label class="popusili_kurcinu" for="naslov">Naslov</label>
-                <input name="naslov" placeholder="Unesi naslov.." required type="text">
-                <label class="popusili_kurcinu" for="text">Unesi belesku</label>
-                <textarea placeholder="Unesi novu belesku.." name="text" rows="4" cols="50" required></textarea>
+                <input name="ime" placeholder="Unesi ime projekta.." required type="text">
+
+                <input name="deskripcija" placeholder="Unesi deskripciju.." required type="text">
+
+                <select name="clanovi" id="clanovi" multiple required>
+                    {% for clan in clanovi %}
+                        <option value="{{ clan.id }}">{{ clan.user.username }}</option>
+                    {% endfor %}
+                </select>
+                
+                <input name="slika" required type="file">
+                
                 <button>Sacuvaj</button>
             </form>
         </div>
@@ -44,6 +73,7 @@
             var modal = document.getElementById("modal");
             modal.style.display = 'block';
         }
+
 
     </script>
     

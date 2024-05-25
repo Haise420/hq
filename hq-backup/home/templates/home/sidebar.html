@@ -1,0 +1,36 @@
+{% load static %}
+{% block content %}
+
+
+<div class="sidebar">
+    <h2>HeadQuarters</h2>
+    <ul>
+      <li><a href="{% url 'home' %}">Pocetna</a></li>
+      <li><a href="{% url 'projekti' %}">Projekti</a></li>
+      <li><a href="{% url 'clanovi' %}">Clanovi</a></li>
+      <li><a href="{% url 'webftp' %}">WebFTP</a></li>
+      <li><a href="{% url 'masine' %}">Masine</a></li>
+      <li><a href="{% url 'copilot' %}">Ai Copilot</a></li>
+      <li><a href="{% url 'planovi' %}">Planovi</a></li>
+      
+    </ul>
+
+
+
+    <br>
+    <div class="sidebar-bottom">
+
+        <div class="sidebar-profil">
+            <img src="" alt="">
+            <p>Srda</p>
+            <a href="{% url 'logout' %}">
+                <img src="{% static 'images/logout.png' %}" alt="">
+            </a>
+        </div>
+        
+  
+        
+    </div>
+  </div>
+
+  {% endblock content %}

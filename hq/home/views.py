@@ -61,55 +61,79 @@ def izmeni_belesku(request, beleska_id):
     return redirect('home')
 
 @login_required(login_url=settings.LOGIN_URL)
-def profil(requests):
+def profil(request):
 
 
 
-    return render(requests, 'home/profil.html')
+    return render(request, 'home/profil.html')
 
 @login_required(login_url=settings.LOGIN_URL)
-def projekti(requests):
+def projekti(request):
     projekti = Projekat.objects.all()
+    clanovi = Clan.objects.all()
 
-    context = {'projekti': projekti}
+    if request.method == "POST":
+        ime = request.POST.get('ime')
+        deskripcija = request.POST.get('deskripcija')
+        clanovii = request.POST.getlist('clanovi')
+        slika = request.POST.get('slika')
+
+        novi_projekat = Projekat(ime=ime, deskripcija=deskripcija, slika=slika)
+        novi_projekat.save()
+
+        if clanovii:
+            novi_projekat.clanovi.set(clanovii)
+
+
+        return redirect('projekti')
+
+    context = {'projekti': projekti, 'clanovi': clanovi}
     
-    return render(requests, 'home/projekti.html', context)
+    return render(request, 'home/projekti.html', context)
 
 @login_required(login_url=settings.LOGIN_URL)
-def clanovi(requests):
+def clanovi(request):
 
     clanovi = Clan.objects.all()
     context = {'clanovi': clanovi}
     
-    return render(requests, 'home/clanovi.html', context)
+    return render(request, 'home/clanovi.html', context)
 
 @login_required(login_url=settings.LOGIN_URL)
-def webftp(requests):
+def webftp(request):
 
 
 
-    return render(requests, 'home/webftp.html')
+    return render(request, 'home/webftp.html')
 
 @login_required(login_url=settings.LOGIN_URL)
-def masine(requests):
+def masine(request):
 
-
+    masine = Masina.objects.all()
+    context = {'masine': masine}
     
-    return render(requests, 'home/masine.html')
+    return render(request, 'home/masine.html', context)
 
 @login_required(login_url=settings.LOGIN_URL)
-def copilot(requests):
+def copilot(request):
 
 
 
-    return render(requests, 'home/copilot.html')
+    return render(request, 'home/copilot.html')
 
 @login_required(login_url=settings.LOGIN_URL)
-def planovi(requests):
+def planovi(request):
 
 
 
-    return render(requests, 'home/planovi.html')
+    return render(request, 'home/planovi.html')
+
+@login_required(login_url=settings.LOGIN_URL)
+def obuka(request):
+
+
+
+    return render(request, 'home/obuka.html')
 
 def login_view(request):
     context = {}

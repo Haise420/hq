@@ -17,6 +17,7 @@ class Beleska(models.Model):
     kreiran = models.DateTimeField(auto_now_add=True)
 
 
+
 class Projekat(models.Model):
     ime = models.CharField(max_length=18)
     deskripcija = models.TextField(max_length=6000)
@@ -27,3 +28,16 @@ class Projekat(models.Model):
 
     def __str__(self):
         return self.ime
+    
+class Masina(models.Model):
+    ip_adresa = models.CharField(max_length=20)
+    ssh_username = models.CharField(max_length=20)
+    ssh_password = models.CharField(max_length=25)
+    ssh_port = models.IntegerField()
+    ime = models.CharField(max_length=18)
+    sistem_instaliran = models.TextField()
+    kreiran = models.DateTimeField(auto_now_add=True)
+    pristup = models.ManyToManyField(Clan)
+    istice = models.DateField()
+    aktivna = models.BooleanField()
+

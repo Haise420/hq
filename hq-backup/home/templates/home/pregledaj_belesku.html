@@ -1,0 +1,50 @@
+{% load static %}
+<html lang="en" class="html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HQ</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" class="css">
+</head>
+<body>
+    
+    {% include 'home/sidebar.html' %}
+    
+    <div class="container">
+        <div class="box">
+            <p>{{ beleska.text }}</p>
+            <p>{{ beleska.kreiran }}</p>
+            <a href="{% url 'obrisi_belesku' beleska_id=beleska.id %}">
+                <button>Obrisi biljesku</button>
+            </a>
+           
+            <button onclick="otvoriModal()">Izmeni biljesku</button>
+       
+        </div>
+    
+      
+    </div>
+
+    <div id="modal">
+        <div class="modal-content">
+            <form action="{% url 'izmeni_belesku' beleska_id=beleska.id %}" method="POST">
+                {% csrf_token %}
+                <textarea placeholder="Unesi novu belesku.." name="text" rows="4" cols="50" required>
+                    {{beleska.text}}
+                </textarea>
+                <button>Sacuvaj</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+        function otvoriModal(){
+            var modal = document.getElementById("modal");
+            modal.style.display = 'block';
+        }
+
+    </script>
+    
+</body>
+</html>

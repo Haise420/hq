@@ -1,0 +1,53 @@
+.clanovi{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+
+    width: 90%;
+    margin-top: 50px;
+    margin-left: 50px;
+
+}
+
+.clan{
+    background-color: rgb(23,23,23, 0.8);
+    height: 300px;
+    display: grid;
+    width: 300px;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    gap: 10px;
+    border: 10px solid rgb(234,244,233, 0.2);
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+.clan:hover{
+    background-color: rgba(48, 47, 47, 0.8);
+}
+
+.clan img{
+    width: 100%;
+    height: 200px;
+}
+
+.clan a{
+    text-decoration: none;
+    color: white;
+    transition: 0.2s ease;
+
+}
+
+.clan a:hover{
+    scale: 1.2;
+    background-color: rgb(234,244,233, 0.2);
+}
+
+.clan-aktivnost p{
+    margin: 0;
+
+}
