@@ -24,8 +24,8 @@
     <div class="sidebar-bottom">
 
         <div class="sidebar-profil">
-            <img src="" alt="">
-            <p>Srda</p>
+            <img src="{{ korisnik.slika.url }}" alt="">
+            <p>{{korisnik}}</p>
             <a href="{% url 'logout' %}">
                 <img src="{% static 'images/logout.png' %}" alt="">
             </a>

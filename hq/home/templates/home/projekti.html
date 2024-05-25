@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HQ</title>
     <link rel="stylesheet" href="{% static 'css/home.css' %}" class="css">
+    <link rel="stylesheet" href="{% static 'css/buttons.css' %}" class="css">
     <link rel="stylesheet" href="{% static 'css/projekti.css' %}" class="css">
 </head>
 <body>
@@ -47,8 +48,10 @@
 
     <div id="modal">
         <div class="modal-content">
-            <form action="" method="POST">
+            <span id="zatvorimodal" onclick="zatvoriModal()">x</span>
+            <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
+                
                 <label class="popusili_kurcinu" for="naslov">Naslov</label>
                 <input name="ime" placeholder="Unesi ime projekta.." required type="text">
 
@@ -56,26 +59,22 @@
 
                 <select name="clanovi" id="clanovi" multiple required>
                     {% for clan in clanovi %}
+    
                         <option value="{{ clan.id }}">{{ clan.user.username }}</option>
                     {% endfor %}
                 </select>
                 
-                <input name="slika" required type="file">
+                <input name="slika" type="file" required>
                 
-                <button>Sacuvaj</button>
+                <button class="btn">Sacuvaj</button>
             </form>
         </div>
     </div>
 
-    <script>
+  
 
-        function otvoriModal(){
-            var modal = document.getElementById("modal");
-            modal.style.display = 'block';
-        }
+     <script src="{% static 'js/modal.js' %}"></script>
 
-
-    </script>
     
 </body>
 </html>

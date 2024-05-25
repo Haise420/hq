@@ -1,0 +1,50 @@
+{% load static %}
+<html lang="en" class="html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HQ</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" class="css">
+</head>
+<body>
+    
+    {% include 'home/sidebar.html' %}
+    
+    <div class="container">
+        <div class="box" style="height: auto;text-align: unset;">
+            <p>{{ masina.ime }}</p>
+            <p>{{ masina.kreiran }}</p>
+            <a href="{% url 'obrisi_masinu' masina_id=masina.id %}">
+                <button>Obrisi masinu</button>
+            </a>
+           
+            <button onclick="otvoriModal()">Izmeni masinu</button>
+       
+        </div>
+    
+      
+    </div>
+
+    <div id="modal">
+        <div class="modal-content">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <textarea placeholder="Unesi novu belesku.." name="text" rows="4" cols="50" required>
+                    {{beleska.text}}
+                </textarea>
+                <button>Sacuvaj</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+        function otvoriModal(){
+            var modal = document.getElementById("modal");
+            modal.style.display = 'block';
+        }
+
+    </script>
+    
+</body>
+</html>

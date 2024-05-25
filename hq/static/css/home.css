@@ -137,6 +137,7 @@ h2{
     width: 80%;
     max-width: 500px;
     text-align: center;
+    position: relative;
 }
 
 .modal-content textarea{

@@ -17,7 +17,10 @@
             {% for masina in masine %}
             <div class="masina">
                 {{masina.ip_adresa}}
-                {{masina.ime}}
+                <a href="{% url 'pregledaj_masinu' masina_id=masina.id %}">
+                    {{masina.ime}}
+                </a>
+                
             </div>
                 {% endfor %}
         </div>
